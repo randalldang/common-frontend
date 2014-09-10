@@ -1,4 +1,4 @@
-define('eventBus', ['jquery'], function() {
+define(['jquery'], function() {
 	var eventBus = {};
 
 	eventBus.trigger = function(event, opt_params){

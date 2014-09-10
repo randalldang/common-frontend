@@ -1,6 +1,6 @@
-define('Menu', ['eventBus'], function(eventBus) {
-  var Menu = function(navigation) {
-    this.navigation = navigation;
+define(['core/eventbus', 'core/navigation'], function(eventBus, Navigation) {
+  var Menu = function() {
+    this.navigation = new Navigation();
     this.init_();
   };
 
@@ -8,16 +8,14 @@ define('Menu', ['eventBus'], function(eventBus) {
     var navigation = this.navigation;
     eventBus.bind('navigate', function (event, menu) {
       console.log('menu - ' + menu.code + ':' + menu.title);
-    });
-
-    $('#menu1').bind('click', function() {
-      navigation.go('home', 'Homepage');
-    });
-
-    $('#menu2').bind('click', function() {
-      navigation.go('product', 'Product');
-    });
+    }); 
   };  
+
+
+  Menu.prototype.loadTemplate = function() {
+    $('#header').html($.templates('#menu').render());
+    //$('#template-container').load('template/common/menu.tpl');
+  }; 
 	
   return Menu;
 });

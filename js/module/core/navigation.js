@@ -1,4 +1,4 @@
-define('Navigation', ['eventBus'], function(eventBus) {
+define(['core/eventbus', 'jquery.history'], function(eventBus) {
 	var Navigation = function() {
     this.init_();
   };
