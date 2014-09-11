@@ -1,11 +1,10 @@
-define(['core/eventbus', 'core/navigation'], function(eventBus, Navigation) {
+define(['core/eventbus', 'core/navigation'], function(eventBus, navigation) {
   var Menu = function() {
-    this.navigation = new Navigation();
+    this.navigation = navigation;
     this.init_();
   };
 
   Menu.prototype.init_ = function() {
-    var navigation = this.navigation;
     eventBus.bind('navigate', function (event, menu) {
       console.log('menu - ' + menu.code + ':' + menu.title);
     }); 
@@ -13,7 +12,7 @@ define(['core/eventbus', 'core/navigation'], function(eventBus, Navigation) {
 
 
   Menu.prototype.loadTemplate = function() {
-    $('#header').html($.templates('#menu').render());
+    $('#menu').html($.templates('#menu-template').render());
     //$('#template-container').load('template/common/menu.tpl');
   }; 
 	

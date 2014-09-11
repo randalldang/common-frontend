@@ -7,17 +7,17 @@ define(['core/eventbus', 'core/menu'], function(eventBus, Menu) {
   AdminMenu.prototype = new Menu();
   
   AdminMenu.prototype.bindEvent = function() {
-    $('#menu1').bind('click', $.proxy(function() {
-      this.navigation.go('home', 'Homepage');
-    }, this));
+    $('#menu').bind('click', $.proxy(function(event) {
+      var target = event.target ? event.target : event.srcElement;
+      var menuCode = $(target).attr('__menucode');
+      if (menuCode) {
+        $('#menu li').removeClass('active');
+        $(target).parent().addClass('active');
+        this.navigation.go(menuCode, menuCode);  
+      }}, this));
 
-    $('#menu2').bind('click', $.proxy(function() {
-      this.navigation.go('product', 'Product');
-    }, this));  
+    
   };
 
-
-
-  
   return AdminMenu;
 });
